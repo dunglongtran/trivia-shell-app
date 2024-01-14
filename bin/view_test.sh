@@ -42,12 +42,15 @@ while IFS=',' read -r question correct_answer _ option_a option_b option_c; do
 #    if [[ $user_answer == "Không hợp lệ" || $user_answer == "Hết thời gian" ]]; then
 #        echo "Câu trả lời của bạn: $user_answer -> Trả lời trong $answer_time giây"
 #    fi
+    if [ -z "$answer_time" ]; then
+        answer_time=0
+    fi
      if [[ $user_answer == "Không hợp lệ" ]]; then
             echo "Câu trả lời của bạn là $user_answer."
     elif [[ $user_answer == "Hết thời gian" ]]; then
             echo "Bạn đã trả lời vượt quá thời gian là $answer_time giây"
     else
-            echo "Bạn trả lời trong $answer_time giây"
+            echo "Bạn đã trả lời trong $answer_time giây"
     fi
     echo
  done < "$questions_file"
