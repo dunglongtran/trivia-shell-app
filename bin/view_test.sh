@@ -10,17 +10,21 @@ if [ ! -f "$user_result_file" ] || [ ! -f "$questions_file" ]; then
     echo "File kết quả không tồn tại."
     exit 1
 fi
-
+index=0
 # Xử lý và hiển thị từng câu hỏi
-while IFS=',' read -r question correct_answer _ option_a option_b option_c; do
+while IFS=',' read -r user_question user_answer answer_time; do
+    if [ "$index" -eq 0 ]; then
+        index=$((index+1))
+        continue
+    fi
     # Tìm câu trả lời và thời gian trả lời của người dùng cho câu hỏi này
-    while IFS=',' read -r user_question user_answer answer_time; do
+    while IFS=',' read -r question correct_answer _ option_a option_b option_c; do
         if [ "$question" == "$user_question" ]; then
             break
         fi
-    done < "$user_result_file"
+    done < "$questions_file"
 
-    echo "Câu hỏi: $question"
+    echo "Câu hỏi $index: $question"
     for option in a b c; do
         option_var="option_$option"
         echo -n "["
@@ -53,6 +57,7 @@ while IFS=',' read -r question correct_answer _ option_a option_b option_c; do
             echo "Bạn đã trả lời trong $answer_time giây"
     fi
     echo
- done < "$questions_file"
+    index=$((index+1))
+ done < "$user_result_file"
 
 echo "Kết thúc xem bài kiểm tra."
