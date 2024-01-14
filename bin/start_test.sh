@@ -6,11 +6,18 @@
 NUM_QUESTIONS=30
 questions=()
 CORRECT_ANSWERS=0
+index=0
 # Đọc file vào mảng
 while IFS= read -r line; do
 #    questions+=("$line")
+# Lược bỏ tiêu đề
+     if [ "$index" -eq 0 ]; then
+        index=$((index+1))
+        continue
+    fi
     modified_line=$(echo "$line" | tr -d '\r')
     questions+=("$modified_line")
+    index=$((index+1))
 done < ../data/questions.csv
 
 # Xáo trộn mảng
