@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Hiển thị menu chính
 show_menu() {
     echo "Bạn có thể thực hiện các chưc năng sau:"
@@ -13,12 +14,15 @@ show_menu() {
 handle_choice() {
     case $1 in
         1) bash start_test.sh;;
-        2) bash review_test.sh;;
+        2) bash list_test.sh;;
         3) exit 0;;
         *) echo "Lựa chọn không hợp lệ";;
     esac
 }
 
+echo
+echo "Chào mừng $USER_NAME!"
+echo
 # Vòng lặp chính
 while true; do
     show_menu

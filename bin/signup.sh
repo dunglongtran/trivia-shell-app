@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo "Đăng ký tài khoản mới"
-read -p "Tên người dùng: " username
+read -p "Tên người dùng: " USER_NAME
 read -s -p "Mật khẩu: " password
 echo
 
 # Kiểm tra tên người dùng
-if grep -q "^$username," ../data/users.csv; then
+if grep -q "^$USER_NAME," ../data/users.csv; then
     echo "Tên người dùng đã tồn tại."
     exit 1
 fi
@@ -15,10 +15,10 @@ fi
 hashed_password=$(echo -n "$password" | openssl dgst -sha256)
 
 # Lưu thông tin người dùng
-echo "$username, $hashed_password" >> ../data/users.csv
+echo "$USER_NAME, $hashed_password" >> ../data/users.csv
 
 echo "Đăng ký thành công."
-export USERNAME=$username
+export USER_NAME=$USER_NAME
 echo "Nhấn 'm' để quay lại menu chính hoặc 'q' để thoát."
 read -n 1 -p "Lựa chọn của bạn: " choice
 echo

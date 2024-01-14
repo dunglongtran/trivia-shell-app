@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Đăng nhập vào hệ thống"
-read -p "Tên người dùng: " username
+read -p "Tên người dùng: " USER_NAME
 read -s -p "Mật khẩu: " password
 echo
 
@@ -9,9 +9,9 @@ echo
 hashed_password=$(echo -n "$password" | openssl dgst -sha256)
 
 # Kiểm tra thông tin đăng nhập
-if grep -q "^$username, $hashed_password" ../data/users.csv; then
+if grep -q "^$USER_NAME, $hashed_password" ../data/users.csv; then
     echo "Đăng nhập thành công."
-    export USERNAME=$username
+    export USER_NAME=$USER_NAME
     bash main.sh
 else
     echo "Thông tin đăng nhập không chính xác."

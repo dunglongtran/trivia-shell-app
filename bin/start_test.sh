@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+
 # Số lượng câu hỏi
 NUM_QUESTIONS=30
 questions=()
@@ -34,8 +36,17 @@ done
 
 # Xác định tên file CSV
 current_time=$(date "+%Y_%m_%d_%H_%M")
-csv_file="../data/${USERNAME}_${current_time}.csv"
+csv_file="../data/${USER_NAME}_${current_time}.csv"
 
+clear
+
+echo "**********************************************"
+echo "*"
+echo "* Bắt đầu bài kiểm tra"
+echo "*"
+echo "**********************************************"
+echo
+echo
 # Tạo file CSV và viết header
 echo "question,answer,answer_time" > "$csv_file"
 
@@ -103,6 +114,7 @@ for i in "${!questions[@]}"; do
             echo "Sai! Câu trả lời đúng là: $correct_answer"
         fi
     fi
+echo
 done
 
 ## create some variables
@@ -113,8 +125,38 @@ done
 ##    this is just how this feature works :/
 #result=${str//$find/$replace}
 #echo $result
-
+echo
+echo
 echo "Bài kiểm tra kết thúc."
+echo
 echo "Bạn đã trả lời đúng $CORRECT_ANSWERS/$NUM_QUESTIONS"
+echo
 # [Thêm code để xử lý kết quả và lựa chọn tiếp theo]
-bash app.sh
+
+
+
+while true; do
+echo
+echo "Chọn một trong các tuỳ chọn sau: "
+echo "1. Trở lại"
+echo "2. Xem kết quả"
+echo "3. Thoát"
+echo -n "Vui lòng chọn một tùy chọn: "
+read -r choice
+
+if [[ $choice =~ ^[0-9]+$ ]]; then
+
+        choice=$(echo $choice | sed 's/[^0-9]*//g')
+        break
+else
+ echo "Loi: Nhap so nguyen duong"
+fi
+
+done
+echo "Bạn chọn $choice $csv_file"
+case $choice in
+        1) bash app.sh;;
+        2) bash view_test.sh "$csv_file";;
+        3) exit 0;;
+        *) echo "Lựa chọn không hợp lệ. Thoát." && exit 1;;
+esac
