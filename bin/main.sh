@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bash log.sh "Màn hình chính"
+
 # Kiểm tra xem biến USER_NAME có được đặt hay không
 if [ -z "$USER_NAME" ]; then
     # Nếu USER_NAME không có giá trị, gọi signin.sh

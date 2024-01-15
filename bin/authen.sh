@@ -1,5 +1,6 @@
 #!/bin/bash
 
+bash log.sh "Màn hình xác nhận"
 # Hiển thị menu chính
 show_menu() {
     echo "Chào mừng đến với Ứng dụng Kiểm tra Trực tuyến"

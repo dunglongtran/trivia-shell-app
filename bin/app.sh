@@ -1,5 +1,6 @@
 #!/bin/bash
 
+bash log.sh "Màn hình ứng dụng"
 
 # Hiển thị menu chính
 show_menu() {

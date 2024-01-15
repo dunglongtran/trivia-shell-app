@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bash log.sh "Màn hình xem bài kiểm tra"
+
 if [ "$#" -eq 0 ]; then
 echo "Không có file nào được chỉ định."
 exit 1
@@ -23,6 +25,8 @@ if [ ! -f "$user_result_file" ] || [ ! -f "$questions_file" ]; then
     echo "File kết quả không tồn tại."
     exit 1
 fi
+
+bash log.sh "$USER_NAME xem bài kiểm tra $user_result_file"
 
 clear
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bash log.sh "Màn hình danh sách bài kiểm tra"
+
 # Đường dẫn đến thư mục chứa các file kết quả
 results_dir="../data"
 # Liệt kê các file kết quả, sắp xếp theo thời gian chỉnh sửa, mới nhất đầu tiên

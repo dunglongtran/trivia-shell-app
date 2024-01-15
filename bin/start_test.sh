@@ -1,5 +1,6 @@
 #!/bin/bash
 
+bash log.sh "Màn hình làm bài kiểm tra "
 
 
 # Số lượng câu hỏi
@@ -44,6 +45,8 @@ done
 # Xác định tên file CSV
 current_time=$(date "+%Y_%m_%d_%H_%M")
 csv_file="../data/${USER_NAME}_${current_time}.csv"
+
+bash log.sh "$USER_NAME làm bài kiểm tra $csv_file"
 
 clear
 
@@ -138,8 +141,8 @@ echo "Bài kiểm tra kết thúc."
 echo
 echo "Bạn đã trả lời đúng $CORRECT_ANSWERS/$NUM_QUESTIONS"
 echo
-# [Thêm code để xử lý kết quả và lựa chọn tiếp theo]
 
+bash log.sh "$USER_NAME Bài kiểm tra kết thúc với $CORRECT_ANSWERS/$NUM_QUESTIONS trả lời đúng"
 
 
 while true; do
